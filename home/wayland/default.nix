@@ -9,7 +9,7 @@
     _ = lib.getExe;
   in
     pkgs.writeShellScriptBin "wl-ocr" ''
-      ${_ grim} -g "$(${_ slurp})" -t ppm - | ${_ tesseract5} - - | ${wl-clipboard}/bin/wl-copy ${_ libnotify} "$(${wl-clipboard}/bin/wl-paste)"
+      ${_ grim} -g "$(${_ slurp})" -t ppm - | ${_ tesseract5} - - | ${wl-clipboard}/bin/wl-copy
     '';
 in {
   imports = [
