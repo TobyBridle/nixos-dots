@@ -8,6 +8,7 @@
   imports = [./hardware-configuration.nix];
 
   boot.loader.grub.device = "nodev";
+  boot.loader.grub.efiSupport = true;
 
   networking.hostName = "nirvana";
   networking.networkmanager.enable = true;
