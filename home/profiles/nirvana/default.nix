@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   imports = [
     ../../wayland
     (import ../../git {
@@ -6,5 +6,6 @@
       userName = "Toby Bridle";
       userEmail = "foreignspaghettibolognese@gmail.com";
     })
+    ../../browsers/librewolf
   ];
 }
