@@ -13,7 +13,7 @@
       res = "2560x1440";
       refresh = "165";
     };
-  pluginConfig = import ./plugins.nix { inherit inputs pkgs; };
+  pluginConfig = import ./plugins {inherit inputs pkgs;};
 in {
   imports = [monitorConfig pluginConfig];
   home.packages = with pkgs; [
@@ -27,6 +27,8 @@ in {
     imwheel
     copyq
   ];
+
+  wayland.windowManager.hyprland.settings."$mainMod" = "SUPER";
   wayland.windowManager.hyprland.extraConfig = ''
 
     exec-once = swww init

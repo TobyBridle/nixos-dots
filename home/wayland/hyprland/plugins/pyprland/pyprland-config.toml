@@ -1,0 +1,10 @@
+[pyprland]
+plugins = [
+  "scratchpads"
+]
+
+[scratchpads.music]
+command = "kitty --class pyprland-scratchpad-music"
+animation = "fromTop"
+class = "pyprland-scratchpad-music"
+size = "50% 50%"
