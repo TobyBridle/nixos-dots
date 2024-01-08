@@ -13,8 +13,8 @@
   ];
 
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usbhid"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-amd"];
+  boot.initrd.kernelModules = ["amdgpu"];
+  boot.kernelModules = ["kvm-amd" "amdgpu"];
   boot.extraModulePackages = [];
 
   fileSystems."/" = {
@@ -38,5 +38,6 @@
   # networking.interfaces.wlp15s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode = true;
+  hardware.enableRedistributableFirmware = true;
 }

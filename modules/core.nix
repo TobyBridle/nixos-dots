@@ -12,7 +12,7 @@
   users.users.tobybridle = {
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = ["adbusers" "input" "networkmanager" "wheel"];
+    extraGroups = ["adbusers" "input" "networkmanager" "wheel" "video" "render"];
     hashedPassword = "$6$rounds=200000$VpT7JVZd1qKfeVx0$drRUy6f15GLFIWVUTpbp6z74bvckNb4AqfQ27JkAxDzAlcGxcwDv5IWmsfu05n8xoC.Tud03nXNKGKpl9rNnr1";
   };
 
