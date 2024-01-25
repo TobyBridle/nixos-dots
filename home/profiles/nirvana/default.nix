@@ -11,6 +11,7 @@
       userEmail = "foreignspaghettibolognese@gmail.com";
     })
     ../../browsers/librewolf
+    ../../music.nix
   ];
 
   home.packages = with pkgs; [
