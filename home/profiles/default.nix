@@ -9,6 +9,7 @@
     ../.
     module_args
     inputs.hyprland.homeManagerModules.default
+    inputs.nixvim.homeManagerModules.nixvim
   ];
 
   homeImports = {
