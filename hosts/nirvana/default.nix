@@ -20,6 +20,8 @@
     networkmanager
     rocmPackages.clr
   ];
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
   hardware.opengl = {
     enable = true;
     extraPackages = with pkgs; [
