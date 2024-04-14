@@ -1,21 +1,22 @@
-{
-  pkgs,
-  inputs,
-  lib,
-  systemName ? "nirvana",
-  ...
-}: let
+{ pkgs
+, inputs
+, lib
+, systemName ? "nirvana"
+, ...
+}:
+let
   config = import ../../${systemName}/settings.nix;
 
   monitorConfig =
     import ./monitors.nix
-    {
-      res = "2560x1440";
-      refresh = "165";
-    };
-  pluginConfig = import ./plugins {inherit inputs pkgs;};
-in {
-  imports = [monitorConfig pluginConfig];
+      {
+        res = "2560x1440";
+        refresh = "165";
+      };
+  pluginConfig = import ./plugins { inherit inputs pkgs; };
+in
+{
+  imports = [ monitorConfig pluginConfig ];
   home.packages = with pkgs; [
     # Hyprland likes kitty
     kitty
@@ -127,12 +128,6 @@ in {
     gestures {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
         workspace_swipe = off
-    }
-
-    # Example per-device config
-    # See https://wiki.hyprland.org/Configuring/Keywords/#executing for more
-    device:epic mouse V1 {
-        sensitivity = -0.5
     }
 
     # Example windowrule v1

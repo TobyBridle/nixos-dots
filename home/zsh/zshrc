@@ -1,0 +1,6 @@
+source ~/dotfiles/zsh/plugins/zsh-exa-alias.zsh
+source ~/dotfiles/zsh/plugins/git.plugin.zsh
+
+eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
+

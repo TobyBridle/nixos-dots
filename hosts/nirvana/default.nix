@@ -1,18 +1,18 @@
-{
-  config,
-  pkgs,
-  self,
-  inputs,
-  ...
+{ config
+, pkgs
+, self
+, inputs
+, ...
 }: {
-  imports = [./hardware-configuration.nix];
+  imports = [ ./hardware-configuration.nix ];
 
   boot.loader.grub.device = "nodev";
   boot.loader.grub.enable = true;
   boot.loader.grub.efiSupport = true;
+  boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub.useOSProber = true;
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_zen;
 
   networking.hostName = "nirvana";
   networking.networkmanager.enable = true;
@@ -20,6 +20,7 @@
     networkmanager
     rocmPackages.clr
   ];
+  programs.nix-ld.enable = true;
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
   hardware.opengl = {
@@ -32,10 +33,10 @@
     driSupport = true;
   };
   services.pipewire = {
-	enable = true;
-	alsa.enable = true;
-	alsa.support32Bit = true;
-	pulse.enable = true;
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
   };
   services.xserver.videoDrivers = [ "amdgpu" ];
   programs.hyprland.enable = true;
@@ -47,4 +48,16 @@
   systemd.tmpfiles.rules = [
     "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
   ];
+
+  services.xserver.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.gdm.wayland = true;
+
+  services.postgresql = {
+    enable = true;
+    authentication = pkgs.lib.mkOverride 10 ''
+      #type database  DBuser  auth-method
+      local all       all     trust
+    '';
+  };
 }

@@ -4,6 +4,7 @@
     enableMan = true;
     options = {
       number = true;
+      relativenumber = true;
     };
     globals.mapleader = " ";
     clipboard.register = "unnamedplus";
@@ -28,11 +29,12 @@
         enable = true;
         servers = {
           rnix-lsp.enable = true;
+          rust-analyzer = { enable = true; installCargo = true; installRustc = true; };
         };
       };
       lsp-format = {
         enable = true;
-        lspServersToEnable = [ "rnix-lsp" ];
+        lspServersToEnable = [ "rnix-lsp" "rust-analyzer" ];
       };
       treesitter = {
         enable = true;
@@ -51,6 +53,24 @@
         includeDiff = "all";
       };
       todo-comments.enable = true;
+      leap.enable = true;
+      telescope = {
+        enable = true;
+        keymaps = {
+          "<Leader>fg" = {
+            action = "git_files";
+            desc = "Telescope Find (Git) Files";
+          };
+          "<Leader>ff" = {
+            action = "find_files";
+            desc = "Telescope Find Files";
+          };
+        };
+        extensions = {
+          undo.enable = true;
+          fzf-native.enable = true;
+        };
+      };
       hardtime = {
         enable = true;
         restrictionMode = "hint";

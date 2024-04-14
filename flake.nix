@@ -31,23 +31,33 @@
       url = "github:cachix/pre-commit-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      #inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    apple-emoji = {
+      url = "https://github.com/PoomSmart/EmojiFonts/releases/download/15.0.0/AppleColorEmoji-HD.ttc";
+      flake = false;
+    };
   };
 
   outputs = inputs:
-    inputs.flake-parts.lib.mkFlake {inherit inputs;} {
-      systems = ["x86_64-linux"];
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
       imports = [
         ./home/profiles
         ./hosts
         ./modules
         ./pre-commit-hooks.nix
       ];
-      perSystem = {
-        config,
-        pkgs,
-        ...
-      }: {
-        formatter = pkgs.alejandra;
-      };
+      perSystem =
+        { config
+        , pkgs
+        , ...
+        }: {
+          formatter = pkgs.alejandra;
+        };
     };
 }

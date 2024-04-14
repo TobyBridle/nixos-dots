@@ -1,17 +1,19 @@
-{
-  lib,
-  pkgs,
-  inputs,
-  ...
-}: let
-  ocrScript = let
-    inherit (pkgs) grim libnotify slurp tesseract5 wl-clipboard;
-    _ = lib.getExe;
-  in
+{ lib
+, pkgs
+, inputs
+, ...
+}:
+let
+  ocrScript =
+    let
+      inherit (pkgs) grim libnotify slurp tesseract5 wl-clipboard;
+      _ = lib.getExe;
+    in
     pkgs.writeShellScriptBin "wl-ocr" ''
       ${_ grim} -g "$(${_ slurp})" -t ppm - | ${_ tesseract5} - - | ${wl-clipboard}/bin/wl-copy
     '';
-in {
+in
+{
   imports = [
     ./hyprland
   ];

@@ -1,7 +1,6 @@
-{
-  inputs,
-  pkgs,
-  ...
+{ inputs
+, pkgs
+, ...
 }: {
   imports = [
     ../../wayland
@@ -11,13 +10,15 @@
       userEmail = "foreignspaghettibolognese@gmail.com";
     })
     ../../browsers/librewolf
+    ../../wezterm
     ../../editors/nvim
     ../../music.nix
+    ../../zsh
   ];
 
   home.packages = with pkgs; [
     vesktop
-    blender-hip
+    #blender
     xdg-utils
     androidStudioPackages.canary
     inputs.nix-gaming.packages.${pkgs.system}.osu-lazer-bin
